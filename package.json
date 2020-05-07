@@ -2,8 +2,8 @@
   "name": "@42shadow42/react-editable-title",
   "version": "1.2.5",
   "description": "An editable title implementation for the react.",
-  "main": "./lib/index.js",
-  "typings": "./lib/index.d.ts",
+  "main": "lib/index.js",
+  "typings": "lib/index.d.ts",
   "scripts": {
     "dev": "rimraf dist & webpack-dev-server --config ./webpack.config.js --inline --hot --port 2000",
     "build": "rimraf lib & rimraf src/**/*.module.css.d.ts & rollup -c",
