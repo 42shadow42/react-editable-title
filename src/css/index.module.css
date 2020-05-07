@@ -22,7 +22,6 @@
   transition: all .3s;
   border-top-right-radius: unset;
   border-bottom-right-radius: unset;
-  
 }
 
 .aBitMargin {
@@ -190,6 +189,8 @@
 
 .edit {
   padding: 1.48571429em 1.3em .78571429em;
+  vertical-align: middle;
+  margin-left: 1em;
 }
 
 .save {
