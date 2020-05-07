@@ -5,7 +5,7 @@ export default {
     input: 'src/index.tsx',
     output: {
         format: 'cjs',
-        dir: 'dist',
+        dir: 'lib',
         sourcemap: true
     },
     external: [
