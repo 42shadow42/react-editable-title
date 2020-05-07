@@ -1,5 +1,5 @@
 {
-  "name": "react-editable-title",
+  "name": "@42shadow42/react-editable-title",
   "version": "1.2.2",
   "description": "An editable title implementation for the react.",
   "main": "./dist/index.js",
@@ -7,12 +7,12 @@
   "scripts": {
     "dev": "rimraf dist & webpack-dev-server --config ./webpack.config.js --inline --hot --port 2000",
     "build": "rimraf dist & rimraf src/**/*.module.css.d.ts & rollup -c",
-    "version:up": "npm version --force -m \"chore: version bumped to %s\"",
+    "version:up": "npm version -m \"chore: version bumped to %s\"",
     "postversion": "git push && npm publish"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/CeamKrier/react-editable-title.git"
+    "url": "git+https://github.com/42shadow42/react-editable-title.git"
   },
   "keywords": [
     "react",
@@ -25,12 +25,12 @@
     "customizable",
     "validation"
   ],
-  "author": "Emre Çakır",
-  "license": "MIT",
+  "author": "Emre Çakır, 42shadow42",
+  "license": "GPL 3.0",
   "bugs": {
-    "url": "https://github.com/CeamKrier/react-editable-title/issues"
+    "url": "https://github.com/42shadow42/react-editable-title/issues"
   },
-  "homepage": "https://github.com/CeamKrier/react-editable-title#readme",
+  "homepage": "https://github.com/42shadow42/react-editable-title#readme",
   "devDependencies": {
     "@rollup/plugin-typescript": "^4.1.1",
     "@types/classnames": "^2.2.10",
