@@ -151,7 +151,6 @@ const Editable: React.FC<EditableProps> = ({
   return useMemo(() => {
     return (
       <React.Fragment>
-
         <div
           className={cx(styles['title-wrapper'])}
           style={seamlessInput ? calculateDimensions : undefined}>
@@ -169,7 +168,7 @@ const Editable: React.FC<EditableProps> = ({
             onKeyDown={handleKeyDown}
             minLength={inputMinLength}
             maxLength={inputMaxLength}
-            onBlur={saveOnBlur ? handleSaveText : undefined}
+            onBlur={saveOnBlur ? handleSaveText : terminateEditing}
           />
           {
             (inputPattern && popupVisibile) ?
