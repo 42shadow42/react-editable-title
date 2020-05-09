@@ -65,8 +65,7 @@ const Showcase: React.FC = () => {
                 <tr>
                     <th>#</th>
                     <th>Make</th>
-                    <th>Model</th>
-                    <th>Year</th>
+                    <th>Model and Year</th>
                 </tr>
             </thead>
 
@@ -85,8 +84,6 @@ const Showcase: React.FC = () => {
                         cb={handleHondaModelUpdate}
                         onValidationFail={handleModelValidationFail}
                       />
-                    </td>
-                    <td>
                     <Editable 
                         text={`${hondaYear}`} 
                         seamlessInput
@@ -102,15 +99,13 @@ const Showcase: React.FC = () => {
                 <tr>
                     <td>2</td>
                     <td>Toyota</td>
-                    <td>Camry</td>
-                    <td>2012</td>
+                    <td>Camry 2012</td>
                 </tr>
 
                 <tr>
                     <td>3</td>
                     <td>Hyundai</td>
-                    <td>Elantra</td>
-                    <td>2010</td>
+                    <td>Elantra 2010</td>
                 </tr>
             </tbody>
         </table>
