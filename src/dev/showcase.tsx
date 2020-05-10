@@ -40,8 +40,6 @@ const Showcase: React.FC = () => {
         <h1>
           <Editable 
             text={text} 
-            editButton
-            editControlButtons
             placeholder="Type here"
             cb={handleTextUpdate}
             onEditCancel={handleEditCancel}
@@ -82,7 +80,6 @@ const Showcase: React.FC = () => {
                         seamlessInput
                         placeholder="Type model here"
                         inputErrorMessage='Only letters allowed'
-                        inputErrorMessageStyle={{color: 'red'}}
                         inputPattern="^[A-Za-z]*$"
                         cb={handleHondaModelUpdate}
                         onValidationFail={handleModelValidationFail}
@@ -92,7 +89,6 @@ const Showcase: React.FC = () => {
                         seamlessInput
                         placeholder="Type year here"
                         inputErrorMessage='Only numbers allowed'
-                        inputErrorMessageStyle={{color: 'blue'}}
                         inputPattern="^[0-9]*$"
                         cb={handleHondaYearUpdate}
                       />

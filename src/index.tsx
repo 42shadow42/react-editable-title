@@ -16,19 +16,11 @@ enum Key {
 
 interface EditableProps {
   text: string;
-  editButton?: boolean;
-  editControlButtons?: boolean;
   seamlessInput?: boolean;
   saveOnBlur?: boolean;
   placeholder?: string;
-  textStyle?: CSSProperties;
-  inputStyle?: CSSProperties;
-  editButtonStyle?: CSSProperties;
-  saveButtonStyle?: CSSProperties;
-  cancelButtonStyle?: CSSProperties;
   inputPattern?: string;
   inputErrorMessage?: string;
-  inputErrorMessageStyle?: CSSProperties;
   inputMinLength?: number;
   inputMaxLength?: number;
   cb: (currentText: string) => any;
@@ -38,19 +30,11 @@ interface EditableProps {
 
 const Editable: React.FC<EditableProps> = ({
   text,
-  editButton = false,
-  editControlButtons = false,
   seamlessInput = false,
   saveOnBlur = true,
   placeholder = 'Type Here',
-  textStyle,
-  inputStyle,
-  editButtonStyle,
-  saveButtonStyle,
-  cancelButtonStyle,
   inputPattern,
   inputErrorMessage = 'Input does not match the pattern',
-  inputErrorMessageStyle,
   inputMinLength,
   inputMaxLength,
   cb,
@@ -143,11 +127,11 @@ const Editable: React.FC<EditableProps> = ({
   return useMemo(() => {
     return (
       <React.Fragment>
-        <div className={`title-wrapper ${cx(styles['title-wrapper'])}`}>
+        <div className={`react-editable-title-wrapper ${cx(styles['title-wrapper'])}`}>
           {editing &&
             <input
-              className={`${cx(styles['control'])} ${seamlessInput ? cx(styles['seamlessInput']) : cx(styles['customTitleInput'])} ${editControlButtons ? '' : cx(styles['bendRightSide'])}`}
-              style={{ ...inputStyle, minWidth: `${placeholder.length * 8}px` }}
+              className={`react-editable-title-input ${cx(styles['control'])} ${seamlessInput ? cx(styles['seamless-input']) : cx(styles['custom-title-input'])}`}
+              style={{ minWidth: `${placeholder.length * 8}px` }}
               ref={inputRef}
               placeholder={placeholder}
               value={displayText}
@@ -160,35 +144,35 @@ const Editable: React.FC<EditableProps> = ({
           }
           {
             inputPattern && popupVisibile &&
-            <div className={`${cx(styles['popover'])} ${cx(styles['editable-title'])}`} style={inputErrorMessageStyle}>
-                {inputErrorMessage}
+            <div className={`react-editable-title-error ${cx(styles['popover'])} ${cx(styles['editable-title'])}`}>
+              {inputErrorMessage}
             </div>
           }
-          <span
-            className={cx(styles['displayText'])}
-            style={!editing ? { ...textStyle } : { display: 'none' }}
-            onClick={handleClickOnText}>
-            {text}
-            {
-              editButton &&
-              <Button onClick={handleSaveText} className={`${cx(styles['control-button'])} ${cx(styles['control'])} ${cx(styles['edit-control'])}`}>
-                <AiOutlineEdit className={cx(styles['control-icon'])} />
-              </Button>
-            }
-          </span>
+          {!editing &&
+            <span
+              className={`react-editable-title-text ${cx(styles['display-text'])}`}
+              onClick={handleClickOnText}>
+              {text}
+              {
+                !seamlessInput &&
+                <Button onClick={handleSaveText} className={`react-editable-title-edit-button ${cx(styles['control-button'])} ${cx(styles['control'])} ${cx(styles['edit-control'])}`}>
+                  <AiOutlineEdit className={cx(styles['control-icon'])} />
+                </Button>
+              }
+            </span>
+          }
           {
-            editControlButtons && editing &&
+            !seamlessInput && editing &&
             <React.Fragment>
-              <Button onClick={handleSaveText} className={`${cx(styles['control-button'])} ${cx(styles['control'])}`}>
+              <Button onClick={handleSaveText} className={`react-editable-title-save-button ${cx(styles['control-button'])} ${cx(styles['control'])}`}>
                 <AiOutlineCheck className={cx(styles['control-icon'])} />
               </Button>
-              <Button onClick={terminateEditing} className={`${cx(styles['control-button'])} ${cx(styles['control'])} ${cx(styles['cancel-control'])}`}>
+              <Button onClick={terminateEditing} className={`react-editable-title-cancel-button ${cx(styles['control-button'])} ${cx(styles['control'])} ${cx(styles['cancel-control'])}`}>
                 <AiOutlineClose className={cx(styles['control-icon'])} />
               </Button>
             </React.Fragment>
           }
         </div>
-
       </React.Fragment>
     )
   }, [displayText, editing, popupVisibile])
