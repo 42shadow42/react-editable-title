@@ -1,4 +1,6 @@
-import React, { useState, useCallback, useRef, useMemo, CSSProperties } from 'react'
+import React, { useState, useCallback, useRef, useMemo, CSSProperties } from 'react';
+import { Button } from 'reactstrap';
+import { AiOutlineCheck, AiOutlineClose, AiOutlineEdit } from 'react-icons/ai';
 
 import cn from 'classnames/bind';
 import styles from '../src/css/index.module.css';
@@ -34,8 +36,6 @@ interface EditableProps {
   onValidationFail?: Function;
 }
 
-
-
 const Editable: React.FC<EditableProps> = ({
   text,
   editButton = false,
@@ -57,10 +57,10 @@ const Editable: React.FC<EditableProps> = ({
   onEditCancel,
   onValidationFail
 }) => {
-  const [editing, setEditing] = useState(false)
-  const [popupVisibile, setPopupVisible] = useState(false)
-  const [displayText, setDisplayText] = useState('')
-  const inputRef = useRef<HTMLInputElement>(null)
+  const [editing, setEditing] = useState(false);
+  const [popupVisibile, setPopupVisible] = useState(false);
+  const [displayText, setDisplayText] = useState('');
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const handleClickOnText = useCallback(
     () => {
@@ -93,8 +93,8 @@ const Editable: React.FC<EditableProps> = ({
 
   const terminateEditing = useCallback(
     () => {
-      setEditing(false)
-      setPopupVisible(false)
+      setEditing(false);
+      setPopupVisible(false);
       onEditCancel ? onEditCancel() : undefined
     },
     [],
@@ -143,27 +143,26 @@ const Editable: React.FC<EditableProps> = ({
   return useMemo(() => {
     return (
       <React.Fragment>
-        <div className={cx(styles['title-wrapper'])}>
-          <input
-            className= {`${seamlessInput ? cx(styles['seamlessInput']) : cx(styles['customTitleInput'])} ${editControlButtons ? '' : cx(styles['bendRightSide'])}`}
-            style={editing ? { ...inputStyle, minWidth: `${placeholder.length * 8}px` } : { display: 'none' }}
-            ref={inputRef}
-            placeholder={placeholder}
-            value={displayText}
-            onChange={updateDisplayText}
-            onKeyDown={handleKeyDown}
-            minLength={inputMinLength}
-            maxLength={inputMaxLength}
-            onBlur={saveOnBlur ? handleSaveText : terminateEditing}
-          />
+        <div className={`title-wrapper ${cx(styles['title-wrapper'])}`}>
+          {editing &&
+            <input
+              className={`${cx(styles['control'])} ${seamlessInput ? cx(styles['seamlessInput']) : cx(styles['customTitleInput'])} ${editControlButtons ? '' : cx(styles['bendRightSide'])}`}
+              style={{ ...inputStyle, minWidth: `${placeholder.length * 8}px` }}
+              ref={inputRef}
+              placeholder={placeholder}
+              value={displayText}
+              onChange={updateDisplayText}
+              onKeyDown={handleKeyDown}
+              minLength={inputMinLength}
+              maxLength={inputMaxLength}
+              onBlur={saveOnBlur ? handleSaveText : terminateEditing}
+            />
+          }
           {
             inputPattern && popupVisibile &&
-              <div className={`${cx(styles['popover'])} ${cx(styles['editable-title'])}`}>
-                <span
-                  style={inputErrorMessageStyle}>
-                  {inputErrorMessage}
-                </span>
-              </div>
+            <div className={`${cx(styles['popover'])} ${cx(styles['editable-title'])}`} style={inputErrorMessageStyle}>
+                {inputErrorMessage}
+            </div>
           }
           <span
             className={cx(styles['displayText'])}
@@ -172,31 +171,21 @@ const Editable: React.FC<EditableProps> = ({
             {text}
             {
               editButton &&
-                <button
-                  className={`${cx(styles['mainButton'])} ${cx(styles['edit'])} ${editButton ? cx(styles['showControl']) : cx(styles['hideControl'])}`}
-                  style={!editing ? { ...editButtonStyle } : { display: 'none' }}
-                  onClick={handleClickOnText}>
-                  <i className={cx(styles['gg-pen'])} />
-                </button>
+              <Button onClick={handleSaveText} className={`${cx(styles['control-button'])} ${cx(styles['control'])} ${cx(styles['edit-control'])}`}>
+                <AiOutlineEdit className={cx(styles['control-icon'])} />
+              </Button>
             }
           </span>
           {
-            editControlButtons &&
-              <React.Fragment>
-                <button
-                  className={`${cx(styles['mainButton'])} ${cx(styles['save'])} ${editControlButtons ? cx(styles['showControl']) : cx(styles['hideControl'])}`}
-                  style={editing ? { ...saveButtonStyle } : { display: 'none' }}
-                  onClick={handleSaveText}
-                  disabled={text === displayText}>
-                  <i className={cx(styles['gg-check'])} />
-                </button>
-                <button
-                  className={`${cx(styles['mainButton'])} ${cx(styles['cancel'])} ${editControlButtons ? cx(styles['showControl']) : cx(styles['hideControl'])}`}
-                  style={editing ? { ...cancelButtonStyle } : { display: 'none' }}
-                  onClick={terminateEditing}>
-                  <i className={cx(styles['gg-close'])} />
-                </button>
-              </React.Fragment>
+            editControlButtons && editing &&
+            <React.Fragment>
+              <Button onClick={handleSaveText} className={`${cx(styles['control-button'])} ${cx(styles['control'])}`}>
+                <AiOutlineCheck className={cx(styles['control-icon'])} />
+              </Button>
+              <Button onClick={terminateEditing} className={`${cx(styles['control-button'])} ${cx(styles['control'])} ${cx(styles['cancel-control'])}`}>
+                <AiOutlineClose className={cx(styles['control-icon'])} />
+              </Button>
+            </React.Fragment>
           }
         </div>
 

@@ -37,6 +37,8 @@
     "@types/node-sass": "^4.11.0",
     "@types/react": "^16.9.17",
     "@types/react-dom": "^16.9.4",
+    "@types/reactstrap": "^8.4.2",
+    "bootstrap": "^4.4.1",
     "classnames": "^2.2.6",
     "css-loader": "^3.4.0",
     "node-sass": "^4.14.0",
@@ -51,5 +53,12 @@
     "webpack": "^4.41.4",
     "webpack-cli": "^3.3.10",
     "webpack-dev-server": "^3.10.1"
+  },
+  "peerDependencies": {
+    "bootstrap": "^4.4.1"
+  },
+  "dependencies": {
+    "react-icons": "^3.10.0",
+    "reactstrap": "^8.4.1"
   }
 }

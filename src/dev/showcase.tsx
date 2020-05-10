@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
 import Editable from '../../src/index'
+import 'bootstrap/dist/css/bootstrap'
 
 const Showcase: React.FC = () => {
 
@@ -36,14 +37,16 @@ const Showcase: React.FC = () => {
         left: '50%',
         transform: 'translate(-50%, -50%)'
       }}>
-        <Editable 
-          text={text} 
-          editButton
-          editControlButtons
-          placeholder="Type here"
-          cb={handleTextUpdate}
-          onEditCancel={handleEditCancel}
-          />
+        <h1>
+          <Editable 
+            text={text} 
+            editButton
+            editControlButtons
+            placeholder="Type here"
+            cb={handleTextUpdate}
+            onEditCancel={handleEditCancel}
+            />
+        </h1>
           <p />
           <p>
             You can control component with the buttons and also with <b>'Esc'</b>{" "}
