@@ -1,5 +1,3 @@
-# react-editable-title [![Build Status](https://travis-ci.org/CeamKrier/react-editable-title.svg?branch=master)](https://travis-ci.org/CeamKrier/react-editable-title)
-
 An editable title implementation for react.
 
 ## Installation
@@ -26,8 +24,6 @@ const App = () => {
   return (
         <Editable 
           text={text} 
-          editButton
-          editControls
           placeholder="Type here"
           cb={handleTextUpdate}
          />
@@ -36,29 +32,19 @@ const App = () => {
 
 ```
 
-[![Edit 7w063kppz6](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/7w063kppz6)
-
 ## API
 
 | Attribute                | Type            | Description                                                        | Required |
 |--------------------------|-----------------|--------------------------------------------------------------------|----------|
 | `text`                   | `string`        | Text to be displayed                                               | **Yes**  |
-| `textStyle`              | `CSSProperties` | Custom text styling                                                | No       |
 | `cb`                     | `function`      | Invoked when the text has been edited                              | **Yes**  |
 | `onEditCancel`           | `function`      | Invoked when the edit has been canceled                            | No       |
 | `onValidationFail`       | `function`      | Invoked when the text hasn't matched the regex                     | No       |
-| `editButton`             | `boolean`       | Sets the visibility of the edit button. **Default** is `false`     | No       |
-| `editButtonStyle`        | `CSSProperties` | Custom edit button styling                                         | No       |
-| `editControlButtons`     | `boolean`       | Sets the visibility of the control buttons. **Default** is `false` | No       |
-| `saveButtonStyle`        | `CSSProperties` | Custom save button styling                                         | No       |
-| `cancelButtonStyle`      | `CSSProperties` | Custom cancel button styling                                       | No       |
 | `placeholder`            | `string`        | Placeholder text of the input element                              | No       |
 | `saveOnBlur`             | `boolean`       | Attempts to save text input on unfocus. **Default** is `true`      | No       |
 | `seamlessInput`          | `boolean`       | Presents text-editor alike experience. **Default** is `false`      | No       |
-| `inputStyle`             | `CSSProperties` | Custom input styling                                               | No       |
 | `inputPattern`           | `string`        | Regex pattern of desired input                                     | No       |
 | `inputErrorMessage`      | `string`        | Info message about mismatch of input                               | No       |
-| `inputErrorMessageStyle` | `CSSProperties` | Custom error message styling                                       | No       |
 | `inputMinLength`         | `number`        | Min length accepted as an input                                    | No       |
 | `inputMaxLength`         | `number`        | Max length accepted as an input                                    | No       |
 
