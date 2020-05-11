@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useRef, useMemo, CSSProperties } from 'react';
+import React, { useState, useCallback, useRef, useMemo } from 'react';
 import { Button } from 'reactstrap';
 import { AiOutlineCheck, AiOutlineClose, AiOutlineEdit } from 'react-icons/ai';
 
@@ -139,7 +139,7 @@ const Editable: React.FC<EditableProps> = ({
               onKeyDown={handleKeyDown}
               minLength={inputMinLength}
               maxLength={inputMaxLength}
-              onBlur={saveOnBlur ? handleSaveText : terminateEditing}
+              onBlur={saveOnBlur ? handleSaveText : undefined}
             />
           }
           {
