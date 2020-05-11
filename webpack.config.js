@@ -13,6 +13,17 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.scss$/,
+        use: [
+          'to-string-loader',
+          {
+            loader: 'css-loader',
+            options: { modules: false }
+          },
+          'sass-loader'
+        ],
+      },
+      {
         test: /\.css$/,
         use: [
           'style-loader',

@@ -4,7 +4,6 @@
   -webkit-font-feature-settings: 'tnum';
   font-feature-settings: 'tnum';
   display: inline-block;
-  border-color: transparent;
   border-radius: 1em;
   border-top-right-radius: unset;
   border-bottom-right-radius: unset;
@@ -18,7 +17,11 @@
 }
 
 .control {
-  border-color: transparent;
+  font-size: inherit !important;
+}
+
+.control:not(.edit-control) {
+  border-radius: unset !important;
 }
 
 .control:focus {
@@ -26,26 +29,27 @@
 }
 
 .control-button {
+  vertical-align: unset !important;  /* Bootstrap protection */
+  border-color: transparent;
   display: inline-block;
-  padding: 0em .2em;
+  padding: 0em .2em !important;  /* Bootstrap protection */
+  line-height: unset !important; /* Bootstrap protection */
 }
 
 .control-icon {
-  position: relative; 
-  top: -.2em;
   font-size: .8em;
+  vertical-align: unset;
 }
 
-.cancel-control {
-  border-top-right-radius: inherit;
-  border-bottom-right-radius: inherit;
+.control.cancel-control {
+  border-top-right-radius: inherit !important;  /* Bootstrap protection */
+  border-bottom-right-radius: inherit !important;  /* Bootstrap protection */
 }
 
 .edit-control {
-  margin-left: .1em;
   vertical-align: middle;
   margin-left: .25em;
-  border-radius: .5em;
+  border-radius: .5em; 
 }
 
 .display-text {

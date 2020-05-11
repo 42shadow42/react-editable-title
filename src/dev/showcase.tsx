@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
-import ReactDOM from 'react-dom'
-import Editable from '../../src/index'
-import 'bootstrap/dist/css/bootstrap'
+import React, { useState } from 'react';
+import ReactDOM from 'react-dom';
+import Editable from '../../src/index';
+import css from './styles.scss';
+
 
 const Showcase: React.FC = () => {
 
@@ -31,6 +32,9 @@ const Showcase: React.FC = () => {
 
   return (
     <React.Fragment>
+      <style>
+        {css}
+      </style>
       <div style={{
         position: 'fixed',
         top: '50%',
