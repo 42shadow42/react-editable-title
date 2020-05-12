@@ -127,7 +127,7 @@ const Editable: React.FC<EditableProps> = ({
   return useMemo(() => {
     return (
       <React.Fragment>
-        <div className={`react-editable-title-wrapper ${cx(styles['title-wrapper'])}`}>
+        <span className={`react-editable-title-wrapper ${cx(styles['title-wrapper'])}`}>
           {editing &&
             <input
               className={`react-editable-title-input ${cx(styles['control'])} ${seamlessInput ? cx(styles['seamless-input']) : cx(styles['custom-title-input'])}`}
@@ -144,9 +144,9 @@ const Editable: React.FC<EditableProps> = ({
           }
           {
             inputPattern && popupVisibile &&
-            <div className={`react-editable-title-error ${cx(styles['popover'])} ${cx(styles['editable-title'])}`}>
+            <span className={`react-editable-title-error ${cx(styles['popover'])} ${cx(styles['editable-title'])}`}>
               {inputErrorMessage}
-            </div>
+            </span>
           }
           {!editing &&
             <span
@@ -172,7 +172,7 @@ const Editable: React.FC<EditableProps> = ({
               </Button>
             </React.Fragment>
           }
-        </div>
+        </span>
       </React.Fragment>
     )
   }, [displayText, editing, popupVisibile])
