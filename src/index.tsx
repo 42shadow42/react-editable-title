@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useRef, useMemo } from 'react';
+import React, { useState, useCallback, useRef, useMemo, useEffect } from 'react';
 import { Button } from 'reactstrap';
 import { AiOutlineCheck, AiOutlineClose, AiOutlineEdit } from 'react-icons/ai';
 
@@ -46,6 +46,10 @@ const Editable: React.FC<EditableProps> = ({
   const [displayText, setDisplayText] = useState('');
   const inputRef = useRef<HTMLInputElement>(null);
 
+  useEffect(() => {
+    setDisplayText(text);
+  }, [text]);
+
   const handleClickOnText = useCallback(
     () => {
       setEditing(!editing)
@@ -62,7 +66,7 @@ const Editable: React.FC<EditableProps> = ({
         inputRef.current?.focus()
       }, 0);
     },
-    [editing],
+    [editing, text],
   )
 
   const updateDisplayText = useCallback(
