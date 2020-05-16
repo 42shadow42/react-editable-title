@@ -76,7 +76,7 @@ const Editable: React.FC<EditableProps> = ({
         setPopupVisible(false)
       }
     },
-    [],
+    [popupVisibile],
   )
 
   const terminateEditing = useCallback(
@@ -106,7 +106,7 @@ const Editable: React.FC<EditableProps> = ({
       terminateEditing()
       cb(inputRef.current!.value)
     },
-    [],
+    [cb],
   )
 
   const handleSaveText = useCallback(
