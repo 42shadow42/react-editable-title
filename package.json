@@ -1,6 +1,6 @@
 {
   "name": "@42shadow42/react-editable-title",
-  "version": "2.0.6",
+  "version": "2.0.7",
   "description": "An editable title implementation for the react.",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
