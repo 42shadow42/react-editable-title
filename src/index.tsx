@@ -85,7 +85,7 @@ const Editable: React.FC<EditableProps> = ({
       setPopupVisible(false);
       onEditCancel ? onEditCancel() : undefined
     },
-    [],
+    [onEditCancel],
   )
 
   const handleKeyDown = useCallback(
@@ -125,7 +125,7 @@ const Editable: React.FC<EditableProps> = ({
 
       }
     },
-    [],
+    [onValidationFail, inputPattern],
   )
 
   return useMemo(() => {
@@ -179,7 +179,7 @@ const Editable: React.FC<EditableProps> = ({
         </span>
       </React.Fragment>
     )
-  }, [displayText, editing, popupVisibile])
+  }, [displayText, editing, popupVisibile, inputMaxLength, inputMinLength, inputErrorMessage, inputPattern, placeholder, seamlessInput, saveOnBlur])
 }
 
 export default Editable
