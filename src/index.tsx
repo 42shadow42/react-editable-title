@@ -42,13 +42,13 @@ const Editable: React.FC<EditableProps> = ({
   onValidationFail
 }) => {
   const [editing, setEditing] = useState(false);
-  const [popupVisibile, setPopupVisible] = useState(false);
+  const [popupVisible, setPopupVisible] = useState(false);
   const [displayText, setDisplayText] = useState('');
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     setDisplayText(text);
-  }, [text]);
+  }, [text, setDisplayText]);
 
   const handleClickOnText = useCallback(
     () => {
@@ -66,17 +66,17 @@ const Editable: React.FC<EditableProps> = ({
         inputRef.current?.focus()
       }, 0);
     },
-    [editing, text],
+    [editing, setEditing, text, setDisplayText, inputRef],
   )
 
   const updateDisplayText = useCallback(
     () => {
       setDisplayText(inputRef.current!.value)
-      if (popupVisibile) {
+      if (popupVisible) {
         setPopupVisible(false)
       }
     },
-    [popupVisibile],
+    [popupVisible, setDisplayText, setPopupVisible, inputRef],
   )
 
   const terminateEditing = useCallback(
@@ -85,20 +85,7 @@ const Editable: React.FC<EditableProps> = ({
       setPopupVisible(false);
       onEditCancel ? onEditCancel() : undefined
     },
-    [onEditCancel],
-  )
-
-  const handleKeyDown = useCallback(
-    (event) => {
-      const stroke = event.keyCode || event.which
-
-      if (stroke === Key.Enter && text !== inputRef.current?.value) {
-        handleSaveText()
-      } else if (stroke === Key.ESC) {
-        terminateEditing()
-      }
-    },
-    [text],
+    [onEditCancel, setEditing, setPopupVisible],
   )
 
   const saveText = useCallback(
@@ -106,7 +93,7 @@ const Editable: React.FC<EditableProps> = ({
       terminateEditing()
       cb(inputRef.current!.value)
     },
-    [cb],
+    [cb, terminateEditing, inputRef],
   )
 
   const handleSaveText = useCallback(
@@ -125,7 +112,20 @@ const Editable: React.FC<EditableProps> = ({
 
       }
     },
-    [onValidationFail, inputPattern],
+    [onValidationFail, inputPattern, saveText, setPopupVisible, inputRef],
+  )
+
+  const handleKeyDown = useCallback(
+    (event) => {
+      const stroke = event.keyCode || event.which
+
+      if (stroke === Key.Enter && text !== inputRef.current?.value) {
+        handleSaveText()
+      } else if (stroke === Key.ESC) {
+        terminateEditing()
+      }
+    },
+    [text, handleSaveText, terminateEditing, inputRef],
   )
 
   return useMemo(() => {
@@ -147,7 +147,7 @@ const Editable: React.FC<EditableProps> = ({
             />
           }
           {
-            inputPattern && popupVisibile &&
+            inputPattern && popupVisible &&
             <span className={`react-editable-title-error ${cx(styles['popover'])} ${cx(styles['editable-title'])}`}>
               {inputErrorMessage}
             </span>
@@ -179,7 +179,7 @@ const Editable: React.FC<EditableProps> = ({
         </span>
       </React.Fragment>
     )
-  }, [displayText, editing, popupVisibile, inputMaxLength, inputMinLength, inputErrorMessage, inputPattern, placeholder, seamlessInput, saveOnBlur])
+  }, [displayText, editing, popupVisible, inputMaxLength, inputMinLength, inputErrorMessage, inputPattern, placeholder, seamlessInput, saveOnBlur])
 }
 
 export default Editable
